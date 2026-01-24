@@ -1,13 +1,44 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from "react";
+import { MainLayout } from "@/components/layout/MainLayout";
+import { Feed } from "@/components/feed/Feed";
+import { Messages } from "@/components/messages/Messages";
+import { Profile } from "@/components/profile/Profile";
+import { Explore } from "@/components/explore/Explore";
+import { Reels } from "@/components/reels/Reels";
+import { Notifications } from "@/components/notifications/Notifications";
+import { SearchComponent } from "@/components/search/Search";
+import { Saved } from "@/components/saved/Saved";
 
 const Index = () => {
+  const [activeTab, setActiveTab] = useState("home");
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case "home":
+        return <Feed />;
+      case "search":
+        return <SearchComponent />;
+      case "explore":
+        return <Explore />;
+      case "reels":
+        return <Reels />;
+      case "messages":
+        return <Messages />;
+      case "notifications":
+        return <Notifications />;
+      case "saved":
+        return <Saved />;
+      case "profile":
+        return <Profile />;
+      default:
+        return <Feed />;
+    }
+  };
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <MainLayout activeTab={activeTab} onTabChange={setActiveTab}>
+      {renderContent()}
+    </MainLayout>
   );
 };
 
