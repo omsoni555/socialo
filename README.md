@@ -1,6 +1,6 @@
 ## Project info
 
-**URL**: 
+**URL**: socialo-sage.vercel.app
 
 ## What technologies are used for this project?
 
